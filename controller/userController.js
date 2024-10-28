@@ -14,7 +14,7 @@ export const register = async (req, res) => {
       return res.status(400).json({ error: "User already exists." });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    const hashedPassword = await bcrypt.hash(password, 1);
     
     const newUser = new User({
       userName,
@@ -44,11 +44,11 @@ export const login = async (req, res) => {
       return res.status(401).json({ error: "Invalid username or password." });
     }
 
-    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1m" });
+    const token = jwt.sign({ userId: user._id }, JWT_SECRET, { expiresIn: "1h" });
 
     console.log("token" + token)
 
-    res.status(200).json({ message: "Login successful", token });
+    res.status(200).json({ message: "Login successful", token , userName});
   } catch (error) {
     console.error("Error during login:", error);
     res.status(500).json({ error: "Internal Server Error." });

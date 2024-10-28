@@ -13,7 +13,8 @@ const PORT = process.env.PORT || 4000;
 const MONGOURL = process.env.MONGO_URL;
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:3000' })); // Enable CORS for your frontend
+// app.use(cors({ origin: 'http://localhost:3000' })); // Enable CORS for your frontend
+app.use(cors()); 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.urlencoded({ extended: true }));
@@ -32,3 +33,4 @@ mongoose
 // API Routes
 app.use("/students", StudentRoute);
 app.use("/", UserRoute);
+
