@@ -1,5 +1,5 @@
 import express from "express";
-// import { authenticateJWT } from "../middleware/authMiddleware.js"; 
+import { authenticateJWT } from "../middleware/authMiddleware.js"; 
 import {
   create,
   fetch,
@@ -10,7 +10,7 @@ import {
 
 const route = express.Router();
 
-// route.use(authenticateJWT); 
+route.use(authenticateJWT); 
 
 route.get("/", fetch);
 route.get("/:id", getByID);
